@@ -4,6 +4,7 @@ Console.WriteLine("----------------------------");
 
 int circleCount = 0;
 int rectangleCount = 0;
+int sphereCount = 0;
 double radius = 0;
 double height = 0;
 double width = 0;
@@ -12,7 +13,7 @@ bool goAgain = true;
 while (goAgain)
 {
 
-    Console.WriteLine("Would you like to create a (1)Circle or a (2)Rectangle?");
+    Console.WriteLine("Would you like to create a (1)Circle, (2)Rectangle, or (3)Sphere?");
     string selection = Console.ReadLine();
     
     bool isDouble = false;
@@ -81,6 +82,30 @@ while (goAgain)
             rectangleCount++;
             break;
 
+        case "3":
+            while (!isDouble)
+            {
+                //prompt the user to enter a radius; the user may enter a decimal number.
+                Console.Write("Enter radius: ");
+                string input = Console.ReadLine();
+                isDouble = Double.TryParse(input, out radius);
+
+                //Display an error if the user enters invalid data and asks the user again for a radius.
+                if (!isDouble)
+                {
+                    Console.Write("Invalid entry. ");
+                }
+            }
+
+            //Create a Circle object, and display the circumference and area.
+            Sphere Sphere = new Sphere(radius);
+            Console.WriteLine(Sphere);
+
+
+            //Keep track of how many circles you create. 
+            sphereCount++;
+            break;
+
     }
 
     //Ask if the user would like to do another.
@@ -89,15 +114,20 @@ while (goAgain)
     //The application displays a “goodbye” message that also indicates the number of circles the user built when the user chooses not to continue.
     if (!goAgain)
     {
-       if (circleCount == 1 && rectangleCount == 0)
+       if (circleCount == 1 && rectangleCount == 0 && sphereCount == 0)
         {
             Console.WriteLine($"You created 1 circle. Goodbye!");
-        } else if (circleCount == 0 && rectangleCount == 1)
+        } else if (circleCount == 0 && rectangleCount == 1 && sphereCount == 0)
         {
             Console.WriteLine($"You created 1 rectangle. Goodbye!");
-        } else
+        }
+        else if (circleCount == 0 && rectangleCount == 0 && sphereCount == 1)
         {
-            Console.WriteLine($"You created {circleCount} circles, and {rectangleCount} rectangles. Goodbye!");
+            Console.WriteLine($"You created 1 sphere. Goodbye!");
+        }
+        else
+        {
+            Console.WriteLine($"You created {circleCount} circles, {rectangleCount} rectangles, and {sphereCount} spheres. Goodbye!");
         }
 
     }
@@ -205,7 +235,42 @@ class Rectangle
 }
 
 
-//Extra Challenge: Make a class called Sphere. This will include only a radius for a member variable and will instead calculate surface area and volume.
 
+class Sphere
+{
+    //Radius(double)
+    public double radius;
+    public double surfaceArea;
+    public double volume;
+
+    public Sphere(double _radius)
+    {
+        radius = _radius;
+        surfaceArea = FindSurfaceArea(_radius);
+        volume = FindVolume(_radius);
+    }
+
+    //Method to calculate circumference
+    public double FindSurfaceArea(double _radius)
+    {
+        double surfaceArea = 4 * Math.PI * Math.Pow(_radius, 2); 
+        surfaceArea = Math.Round(surfaceArea, 2);
+        return surfaceArea;
+    }
+
+    //Method to calculate Area
+    public double FindVolume(double _radius)
+    {
+        double volume = Math.PI * 4 / 3 * Math.Pow(_radius, 3);
+        volume = Math.Round(volume, 2);
+        return volume;
+    }
+
+    public override string ToString()
+    {
+        return $"Surface Area: {surfaceArea} \nVolume: {volume}";
+    }
+
+}
 
 
