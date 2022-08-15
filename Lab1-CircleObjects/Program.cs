@@ -97,6 +97,7 @@ class Circle
     public double CalculateCircumference(double _radius)
     {
         double calcCircumerence = _radius * 2 * Math.PI;
+        calcCircumerence = Math.Round(calcCircumerence, 2);
         return calcCircumerence;
     }
 
@@ -104,6 +105,7 @@ class Circle
     public double CalculateArea(double _radius)
     {
         double calcArea = _radius * _radius * Math.PI;
+        calcArea = Math.Round(calcArea, 2);
         return calcArea;
     }
 
@@ -116,7 +118,6 @@ class Circle
 
 
 
-//Extra Challenge: Practice formatting so the numbers print with two decimal places.
 //Extra Challenge: Make a class called Rectangle that does all of the above, like Circle, except for a rectangle. There will be two member variables: Length and Width.
 //Extra Challenge: Make a class called Sphere. This will include only a radius for a member variable and will instead calculate surface area and volume.
 
