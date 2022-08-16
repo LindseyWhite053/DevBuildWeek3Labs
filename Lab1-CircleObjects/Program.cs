@@ -9,9 +9,14 @@ double radius = 0;
 double height = 0;
 double width = 0;
 
+//List<Circle> circles = new List<Circle>();
+//List<Rectangle> rectangles = new List<Rectangle>();
+//List<Sphere> sphere = new List<Sphere>();
+
 bool goAgain = true;
 while (goAgain)
 {
+
 
     Console.WriteLine("Would you like to create a (1)Circle, (2)Rectangle, or (3)Sphere?");
     string selection = Console.ReadLine();
