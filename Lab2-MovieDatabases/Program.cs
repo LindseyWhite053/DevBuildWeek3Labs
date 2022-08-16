@@ -1,4 +1,4 @@
-﻿Console.WriteLine("Welcome to the Movie List Application!");
+﻿Console.WriteLine("Welcome to the Movie List Application!\n");
 
 //Construct the movie list
 List<Movie> movieList = new List<Movie>();
@@ -13,31 +13,101 @@ movieList.Add(new Movie("One Flew Over the Cuckoo's Nest", "Drama"));
 movieList.Add(new Movie("Get Out", "Horror"));
 movieList.Add(new Movie("Forest Gump", "Comedy"));
 
-
 Console.WriteLine($"There are {movieList.Count} movies in this list.");
+Console.WriteLine($"(1)Action (2)Comedy  (3)Drama (4)Fantasy (5)Horror (6)Romance (7)Sci-fi");
 
 bool goAgain = true;
 while (goAgain == true)
 {
-    //Ask the user which movies they would like to see display a line for any movie whose category matches the category entered by the user.
-    Console.Write("What category are you interested in? ");
-    string selectedCategory = Console.ReadLine();
+    int num = 0;
 
-    //Program gives explicit feedback if user enters invalid category
-    Movie found = null;
-
-    foreach (Movie next in movieList)
+    //Ask the user which movies they would like to see display a line for any movie whose category matches the category entered by the user
+    Console.Write("\nWhat category are you interested in?(enter the number selection):  ");
+    bool valid = false;
+    while (valid == false)
     {
-        if (next.category.ToLower() == selectedCategory.ToLower())
+
+        valid = int.TryParse(Console.ReadLine(), out num);
+
+        if (num < 1 || num > 7)
+            {
+                valid = false;
+
+            }
+
+        if (valid == false)
         {
-            Console.WriteLine(next);
-            found = next;
+            Console.Write("Please enter a valid number selection:  " );
         }
+
     }
 
-    if (found == null)
+
+    switch (num)
     {
-        Console.WriteLine($"Sorry, there are no movies in this list under the category {selectedCategory}");
+        case 1:
+            foreach (Movie next in movieList)
+            {
+                if (next.category == "Action")
+                {
+                    Console.WriteLine(next);
+                }
+            }
+            break;
+        case 2:
+            foreach (Movie next in movieList)
+            {
+                if (next.category == "Comedy")
+                {
+                    Console.WriteLine(next);
+                }
+            }
+            break;
+        case 3:
+            foreach (Movie next in movieList)
+            {
+                if (next.category == "Drama")
+                {
+                    Console.WriteLine(next);
+                }
+            }
+            break;
+        case 4:
+            foreach (Movie next in movieList)
+            {
+                if (next.category == "Fantasy")
+                {
+                    Console.WriteLine(next);
+                }
+            }
+            break;
+        case 5:
+            foreach (Movie next in movieList)
+            {
+                if (next.category == "Horror")
+                {
+                    Console.WriteLine(next);
+                }
+            }
+            break;
+        case 6:
+            foreach (Movie next in movieList)
+            {
+                if (next.category == "Romance")
+                {
+                    Console.WriteLine(next);
+                }
+            }
+            break;
+        case 7:
+            foreach (Movie next in movieList)
+            {
+                if (next.category == "Sci-fi")
+                {
+                    Console.WriteLine(next);
+                }
+            }
+            break;
     }
 
     goAgain = GoAgain();
@@ -67,7 +137,6 @@ static bool GoAgain()
     }
 }
 
-
 class Movie
 {
     public string title;
@@ -81,11 +150,11 @@ class Movie
 
     public override string ToString()
     {
-        return $"Title: {title} ({category})";
+        return $"{title} ({category})";
     }
 }
 
 
-//Extra Challenge: Standardize the category codes by displaying a menu of categories and having the user select the category by number rather than entering the name.
 //Extra Challenge: Expand the information in your Movie class—run time in minutes, year released, etc. Display the additional information when listing movies.
 //Extra Hard Challenge: Display the movies for the selected category in alphabetical order.
+
