@@ -6,14 +6,13 @@ double radius = 0;
 double height = 0;
 double width = 0;
 
-//List<Circle> circles = new List<Circle>();
-//List<Rectangle> rectangles = new List<Rectangle>();
-//List<Sphere> sphere = new List<Sphere>();
+List<Circle> circleList = new List<Circle>();
+List<Rectangle> rectangleList = new List<Rectangle>();
+List<Sphere> sphereList = new List<Sphere>();
 
 bool goAgain = true;
 while (goAgain)
 {
-
 
     Console.WriteLine("Would you like to create a (1)Circle, (2)Rectangle, or (3)Sphere?");
     string selection = Console.ReadLine();
@@ -38,6 +37,7 @@ while (goAgain)
 
             //Create a Circle object, and display the circumference and area.
             Circle circ = new Circle(radius);
+            circleList.Add(circ);
             Console.WriteLine(circ);
             break;
 
@@ -73,6 +73,7 @@ while (goAgain)
 
             //Create a Circle object, and display the circumference and area.
             Rectangle rect = new Rectangle(height, width);
+            rectangleList.Add(rect);
             Console.WriteLine(rect);
             break;
 
@@ -93,10 +94,13 @@ while (goAgain)
 
             //Create a Circle object, and display the circumference and area.
             Sphere spher = new Sphere(radius);
+            sphereList.Add(spher);
             Console.WriteLine(spher);
             break;
 
     }
+
+
 
     //Ask if the user would like to do another.
     goAgain = GoAgain();
@@ -104,7 +108,8 @@ while (goAgain)
     //The application displays a “goodbye” message that also indicates the number of circles the user built when the user chooses not to continue.
     if (!goAgain)
     {
-       if (Circle.count == 1 && Rectangle.count == 0 && Sphere.count == 0)
+
+        if (Circle.count == 1 && Rectangle.count == 0 && Sphere.count == 0)
         {
             Console.WriteLine($"You created 1 circle. Goodbye!");
         } else if (Circle.count == 0 && Rectangle.count == 1 && Sphere.count == 0)
@@ -186,7 +191,7 @@ class Circle
 
     public override string ToString()
     {
-        return $"Circumference: {FindCircumference()}  \nArea: {FindArea()}";
+        return $"This circle has the following attributes: \nRadius: {radius} \nCircumference: {FindCircumference()}  \nArea: {FindArea()}";
     }
 }
 
@@ -219,7 +224,7 @@ class Rectangle
 
     public override string ToString()
     {
-        return $"Perimeter: {FindPerimeter()} \nArea: {FindArea()}";
+        return $"This rectangle has the following attributes:\nHeight: {height} \nWidth: {width} \nPerimeter: {FindPerimeter()} \nArea: {FindArea()}";
     }
 
 }
@@ -255,7 +260,7 @@ class Sphere
 
     public override string ToString()
     {
-        return $"Surface Area: {FindSurfaceArea()} \nVolume: {FindVolume()}";
+        return $"This sphere has the following attributes: \nRadius: {radius} \nSurface Area: {FindSurfaceArea()} \nVolume: {FindVolume()}";
     }
 
 }
