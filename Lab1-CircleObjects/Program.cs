@@ -37,11 +37,8 @@ while (goAgain)
             }
 
             //Create a Circle object, and display the circumference and area.
-            Circle Circle = new Circle(radius);
-            Console.WriteLine(Circle);
-
-            ////Keep track of how many circles you create. 
-            //circleCount++;
+            Circle circ = new Circle(radius);
+            Console.WriteLine(circ);
             break;
 
         case "2":
@@ -75,9 +72,8 @@ while (goAgain)
             }
 
             //Create a Circle object, and display the circumference and area.
-            Rectangle rectangle = new Rectangle(height, width);
-            Console.WriteLine(rectangle);
-
+            Rectangle rect = new Rectangle(height, width);
+            Console.WriteLine(rect);
             break;
 
         case "3":
@@ -96,9 +92,8 @@ while (goAgain)
             }
 
             //Create a Circle object, and display the circumference and area.
-            Sphere Sphere = new Sphere(radius);
-            Console.WriteLine(Sphere);
-
+            Sphere spher = new Sphere(radius);
+            Console.WriteLine(spher);
             break;
 
     }
@@ -164,39 +159,35 @@ class Circle
     
     //Radius(double)
     public double radius;
-    public double circumference;
-    public double area;
+
 
     public Circle(double _radius)
     {
         count++;
         
         radius = _radius;
-        circumference = FindCircumference(_radius);
-        area = FindArea(_radius);
     }
 
     //Method to calculate circumference
-    public double FindCircumference(double _radius)
+    public double FindCircumference()
     {
-        double circumerence = _radius * 2 * Math.PI;
+        double circumerence = radius * 2 * Math.PI;
         circumerence = Math.Round(circumerence, 2);
         return circumerence;
     }
 
     //Method to calculate Area
-    public double FindArea(double _radius)
+    public double FindArea()
     {
-        double area = _radius * _radius * Math.PI;
+        double area = radius * radius * Math.PI;
         area = Math.Round(area, 2);
         return area;
     }
 
     public override string ToString()
     {
-        return $"Circumference: {circumference} \nArea: {area}";
+        return $"Circumference: {FindCircumference()}  \nArea: {FindArea()}";
     }
-
 }
 
 class Rectangle
@@ -205,8 +196,6 @@ class Rectangle
     
     public double height;
     public double width;
-    public double perimeter;
-    public double area;
 
     public Rectangle(double _height, double _width)
     {
@@ -214,25 +203,23 @@ class Rectangle
         
         height = _height;
         width = _width;
-        perimeter = FindPerimeter();
-        area = FindArea();
     }
 
     public double FindPerimeter()
     {
-        perimeter = height * width * 2;
+        double perimeter = height * width * 2;
         return perimeter;
     }
 
     public double FindArea()
     {
-        area = height * width;
+        double area = height * width;
         return area; 
     }
 
     public override string ToString()
     {
-        return $"Perimeter: {perimeter} \nArea: {area}";
+        return $"Perimeter: {FindPerimeter()} \nArea: {FindArea()}";
     }
 
 }
@@ -242,40 +229,33 @@ class Rectangle
 class Sphere
 {
     public static int count; 
-    
-    //Radius(double)
+
     public double radius;
-    public double surfaceArea;
-    public double volume;
 
     public Sphere(double _radius)
     {
         count++;
         
         radius = _radius;
-        surfaceArea = FindSurfaceArea(_radius);
-        volume = FindVolume(_radius);
     }
 
-    //Method to calculate circumference
-    public double FindSurfaceArea(double _radius)
+    public double FindSurfaceArea()
     {
-        double surfaceArea = 4 * Math.PI * Math.Pow(_radius, 2); 
+        double surfaceArea = 4 * Math.PI * Math.Pow(radius, 2); 
         surfaceArea = Math.Round(surfaceArea, 2);
         return surfaceArea;
     }
 
-    //Method to calculate Area
-    public double FindVolume(double _radius)
+    public double FindVolume()
     {
-        double volume = Math.PI * 4 / 3 * Math.Pow(_radius, 3);
+        double volume = Math.PI * 4 / 3 * Math.Pow(radius, 3);
         volume = Math.Round(volume, 2);
         return volume;
     }
 
     public override string ToString()
     {
-        return $"Surface Area: {surfaceArea} \nVolume: {volume}";
+        return $"Surface Area: {FindSurfaceArea()} \nVolume: {FindVolume()}";
     }
 
 }
