@@ -2,9 +2,6 @@
 Console.WriteLine("Welcome to the Circle Tester");
 Console.WriteLine("----------------------------");
 
-int circleCount = 0;
-int rectangleCount = 0;
-int sphereCount = 0;
 double radius = 0;
 double height = 0;
 double width = 0;
@@ -43,9 +40,8 @@ while (goAgain)
             Circle Circle = new Circle(radius);
             Console.WriteLine(Circle);
 
-
-            //Keep track of how many circles you create. 
-            circleCount++;
+            ////Keep track of how many circles you create. 
+            //circleCount++;
             break;
 
         case "2":
@@ -82,9 +78,6 @@ while (goAgain)
             Rectangle rectangle = new Rectangle(height, width);
             Console.WriteLine(rectangle);
 
-
-            //Keep track of how many rectangle you create. 
-            rectangleCount++;
             break;
 
         case "3":
@@ -106,9 +99,6 @@ while (goAgain)
             Sphere Sphere = new Sphere(radius);
             Console.WriteLine(Sphere);
 
-
-            //Keep track of how many circles you create. 
-            sphereCount++;
             break;
 
     }
@@ -119,20 +109,20 @@ while (goAgain)
     //The application displays a “goodbye” message that also indicates the number of circles the user built when the user chooses not to continue.
     if (!goAgain)
     {
-       if (circleCount == 1 && rectangleCount == 0 && sphereCount == 0)
+       if (Circle.count == 1 && Rectangle.count == 0 && Sphere.count == 0)
         {
             Console.WriteLine($"You created 1 circle. Goodbye!");
-        } else if (circleCount == 0 && rectangleCount == 1 && sphereCount == 0)
+        } else if (Circle.count == 0 && Rectangle.count == 1 && Sphere.count == 0)
         {
             Console.WriteLine($"You created 1 rectangle. Goodbye!");
         }
-        else if (circleCount == 0 && rectangleCount == 0 && sphereCount == 1)
+        else if (Circle.count == 0 && Rectangle.count == 0 && Sphere.count == 1)
         {
             Console.WriteLine($"You created 1 sphere. Goodbye!");
         }
         else
         {
-            Console.WriteLine($"You created {circleCount} circles, {rectangleCount} rectangles, and {sphereCount} spheres. Goodbye!");
+            Console.WriteLine($"You created {Circle.count} circle(s), {Rectangle.count} rectangle(s), and {Sphere.count} sphere(s). Goodbye!");
         }
 
     }
@@ -170,6 +160,8 @@ static bool GoAgain()
 
 class Circle
 {
+    public static int count;
+    
     //Radius(double)
     public double radius;
     public double circumference;
@@ -177,6 +169,8 @@ class Circle
 
     public Circle(double _radius)
     {
+        count++;
+        
         radius = _radius;
         circumference = FindCircumference(_radius);
         area = FindArea(_radius);
@@ -207,13 +201,17 @@ class Circle
 
 class Rectangle
 {
-    double height;
-    double width;
-    double perimeter;
-    double area;
+    public static int count;
+    
+    public double height;
+    public double width;
+    public double perimeter;
+    public double area;
 
     public Rectangle(double _height, double _width)
     {
+        count++;
+        
         height = _height;
         width = _width;
         perimeter = FindPerimeter();
@@ -243,6 +241,8 @@ class Rectangle
 
 class Sphere
 {
+    public static int count; 
+    
     //Radius(double)
     public double radius;
     public double surfaceArea;
@@ -250,6 +250,8 @@ class Sphere
 
     public Sphere(double _radius)
     {
+        count++;
+        
         radius = _radius;
         surfaceArea = FindSurfaceArea(_radius);
         volume = FindVolume(_radius);
