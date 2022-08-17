@@ -1,4 +1,6 @@
-﻿Console.WriteLine("Welcome to the Movie List Application!\n");
+﻿using Lab2_MovieDatabases;
+
+Console.WriteLine("Welcome to the Movie List Application!\n");
 
 //Construct the movie list
 List<Movie> movieList = new List<Movie>();
@@ -16,8 +18,7 @@ movieList.Add(new Movie("Forest Gump", "Comedy"));
 Console.WriteLine($"There are {movieList.Count} movies in this list.");
 Console.WriteLine($"(1)Action (2)Comedy  (3)Drama (4)Fantasy (5)Horror (6)Romance (7)Sci-fi");
 
-bool goAgain = true;
-while (goAgain == true)
+do
 {
     int num = 0;
 
@@ -30,14 +31,14 @@ while (goAgain == true)
         valid = int.TryParse(Console.ReadLine(), out num);
 
         if (num < 1 || num > 7)
-            {
-                valid = false;
+        {
+            valid = false;
 
-            }
+        }
 
         if (valid == false)
         {
-            Console.Write("Please enter a valid number selection:  " );
+            Console.Write("Please enter a valid number selection:  ");
         }
 
     }
@@ -110,8 +111,8 @@ while (goAgain == true)
             break;
     }
 
-    goAgain = GoAgain();
-}
+
+} while (GoAgain());
 
 static bool GoAgain()
 {
@@ -137,22 +138,7 @@ static bool GoAgain()
     }
 }
 
-class Movie
-{
-    public string title;
-    public string category;
 
-    public Movie(string _title, string _category)
-    {
-        title = _title;
-        category = _category;
-    }
-
-    public override string ToString()
-    {
-        return $"{title} ({category})";
-    }
-}
 
 
 //Extra Challenge: Expand the information in your Movie class—run time in minutes, year released, etc. Display the additional information when listing movies.
